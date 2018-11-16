@@ -41,9 +41,23 @@ public class StringCompress {
      * @return String-Array mit dem entpacktem Text
      */
     public String[] readFromFile(String fileName) {
+        String[] liste = new String[getNoOfLines("sample.txt")];
+        String zeile;
+       int anzahl = 0;
 
+        try(Scanner scanner = new Scanner(new FileReader("sample.txt"))){
 
-        return null;
+            while (scanner.hasNextLine()) {
+                zeile = scanner.nextLine();
+                liste[anzahl] = zeile;
+                anzahl++;
+            }
+
+        }catch (FileNotFoundException e){
+            System.err.println(e.getMessage());
+        }
+
+        return liste;
     }
 
 
@@ -55,6 +69,9 @@ public class StringCompress {
      */
     public void print(String[] lines) {
 
+        for (int i = 0; i < readFromFile("sample.txt").length; i++) {
+            System.out.println(readFromFile("sample.txt")[i]);
+        }
     }
 
     /**
@@ -64,8 +81,19 @@ public class StringCompress {
      * @return Anzahl der Zeilen in der Textdatei
      */
     public int getNoOfLines(String fileName) {
+        int anzahl = 0;
 
+        try(Scanner scanner = new Scanner(new FileReader("sample.txt"))){
 
-        return -1;
+            while (scanner.hasNextLine()){
+               scanner.nextLine();
+               anzahl++;
+            }
+
+        }catch (FileNotFoundException e){
+            System.err.println(e.getMessage());
+        }
+
+        return anzahl;
     }
 }

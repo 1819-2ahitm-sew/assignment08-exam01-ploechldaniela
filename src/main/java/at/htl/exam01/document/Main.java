@@ -1,5 +1,7 @@
 package at.htl.exam01.document;
 
+import at.htl.exam01.compress.StringCompress;
+
 public class Main {
 
     /**
@@ -24,6 +26,40 @@ public class Main {
     public static void main(String[] args) {
 
 
+    }
+
+    public abstract class Document{
+        private String autor;
+
+        public Document(String autor){
+            this.autor = autor;
+        }
+
+        public String getAuthor(){
+            return null;
+        }
+    }
+
+    public class Book extends Document {
+
+        private String title;
+
+        public Book(String autor, String title) {
+            super(autor);
+
+            this.title = title;
+        }
+
+        public String getTitle(){
+            return null;
+        }
+    }
+
+    public class Email extends Document {
+
+        public Email(String autor) {
+            super(autor);
+        }
     }
 
 

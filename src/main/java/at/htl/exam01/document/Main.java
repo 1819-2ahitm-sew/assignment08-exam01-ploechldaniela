@@ -1,4 +1,3 @@
-//Plöchl Daniela
 
 package at.htl.exam01.document;
 
@@ -26,6 +25,8 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
+        Document[] document = new Document[10];
+
 
 
     }
@@ -38,7 +39,7 @@ public class Main {
         }
 
         public String getAuthor(){
-            return null;
+            return this.autor;
         }
     }
 
@@ -53,16 +54,50 @@ public class Main {
         }
 
         public String getTitle(){
-            return null;
+            return this.title;
+        }
+
+        public String toString(){
+            return title +" von "+ getAuthor();
         }
     }
 
     public class Email extends Document {
 
-        public Email(String autor) {
+        private String subject;
+        private String to;
+
+        public Email(String autor, String subject, String to) {
             super(autor);
+
+            this.subject = subject;
+            this.to = to;
+        }
+
+        public String getSubject(){
+            return this.subject;
+        }
+
+        public String getTo(){
+            return this.to;
+        }
+
+        public String toString(){
+            return subject +" von "+ getAuthor() +" an "+ to;
         }
     }
 
+
+    public class Book1 extends Book{
+
+
+
+        public Book1(String autor, String title) {
+            super(autor, title);
+
+            autor = "Rowlings";
+            title = "Harry Potter und der Stein der Weisen";
+        }
+    }
 
 }

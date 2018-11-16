@@ -1,3 +1,5 @@
+//Plöchl Daniela
+
 package at.htl.exam01.document;
 
 import at.htl.exam01.compress.StringCompress;

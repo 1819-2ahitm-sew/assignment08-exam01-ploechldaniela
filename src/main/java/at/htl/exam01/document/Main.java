@@ -6,98 +6,51 @@ import at.htl.exam01.compress.StringCompress;
 public class Main {
 
     /**
-     *
      * Führen Sie hier folgendes durch:
-     *
+     * <p>
      * 1. Erstellen Sie 2 Bücher und ein email
-     *    Buch: "Rowlings", "Harry Potter und der Stein der Weisen"
-     *    Email: "Susi", "Bewerbung", "CoolCompany"
-     *    Buch: "Tolkien", "lordOfTheRings"
-     *
+     * Buch: "Rowlings", "Harry Potter und der Stein der Weisen"
+     * Email: "Susi", "Bewerbung", "CoolCompany"
+     * Buch: "Tolkien", "lordOfTheRings"
+     * <p>
      * 2. Erstellen Sie ein Document-Array und speichern Sie obige Dokumente in diesem Array.
-     *
+     * <p>
      * 3. Geben Sir die Inhalte dieser Documente wie folgt aus.
-     *    Nutzen Sie dabei die Mechanismen der Vererbung.
-     *    Erstellen Sie außerdem geeignete toString-Methoden
-     *
+     * Nutzen Sie dabei die Mechanismen der Vererbung.
+     * Erstellen Sie außerdem geeignete toString-Methoden
+     * <p>
      * 4. Zählen Sie die Bücher und emails im Array und geben Sie die jeweilige Anzahl aus.
      *
      * @param args
      */
+
     public static void main(String[] args) {
-        Document[] document = new Document[10];
+        Book book = new Book("Rowlings", "Harry Potter und der Stein der Weisen");
+        Email email = new Email("Susi", "Bewerbung", "CoolCompany");
+        Book book1 = new Book("Tolkien", "lordOfTheRings");
+
+        Document[] document = new Document[3];
+
+        document[0] = book;
+        document[1] = email;
+        document[2] = book1;
+
+        int bücher = 0;
+        int emails = 0;
+
+        for (int i = 0; i < document.length; i++) {
 
 
 
+            if (document[i] instanceof Book){
+                System.out.println("Book: "+ document[i].toString());
+                bücher++;
+            }else if (document[i] instanceof Email){
+                System.out.println("Email: "+ document[i].toString());
+                emails++;
+            }
+        }
+        System.out.println("Anzahl Books: "+bücher);
+        System.out.println("Anzahl Emails: "+emails);
     }
-
-    public abstract class Document{
-        private String autor;
-
-        public Document(String autor){
-            this.autor = autor;
-        }
-
-        public String getAuthor(){
-            return this.autor;
-        }
-    }
-
-    public class Book extends Document {
-
-        private String title;
-
-        public Book(String autor, String title) {
-            super(autor);
-
-            this.title = title;
-        }
-
-        public String getTitle(){
-            return this.title;
-        }
-
-        public String toString(){
-            return title +" von "+ getAuthor();
-        }
-    }
-
-    public class Email extends Document {
-
-        private String subject;
-        private String to;
-
-        public Email(String autor, String subject, String to) {
-            super(autor);
-
-            this.subject = subject;
-            this.to = to;
-        }
-
-        public String getSubject(){
-            return this.subject;
-        }
-
-        public String getTo(){
-            return this.to;
-        }
-
-        public String toString(){
-            return subject +" von "+ getAuthor() +" an "+ to;
-        }
-    }
-
-
-    public class Book1 extends Book{
-
-
-
-        public Book1(String autor, String title) {
-            super(autor, title);
-
-            autor = "Rowlings";
-            title = "Harry Potter und der Stein der Weisen";
-        }
-    }
-
 }

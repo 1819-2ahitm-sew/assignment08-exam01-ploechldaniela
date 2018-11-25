@@ -22,16 +22,15 @@ public class StringCompress {
 
 
     /**
-     *
      * Sämtliche Zeilen werden aus der Textdatei eingelesen
      * zB 5A
      * Nun wird in das String-Array AAAAA geschrieben
-     *
+     * <p>
      * Bsp Testdatei
      * 5A
      * 3B
      * 4C
-     *
+     * <p>
      * ergibt eine String-Array mit 3 Elementen
      * AAAAA
      * BBB
@@ -41,20 +40,32 @@ public class StringCompress {
      * @return String-Array mit dem entpacktem Text
      */
     public String[] readFromFile(String fileName) {
-        String[] liste = new String[getNoOfLines("sample.txt")];
-        String zeile;
-       int anzahl = 0;
 
-        try(Scanner scanner = new Scanner(new FileReader("sample.txt"))){
+        String zeile;
+        String[] liste = new String[getNoOfLines(fileName)];
+        int anzahl = 0;
+        char letter;
+        String zahl;
+        int intZahl;
+
+        try (Scanner scanner = new Scanner(new FileReader(fileName))) {
 
             while (scanner.hasNextLine()) {
+
                 zeile = scanner.nextLine();
-                liste[anzahl] = zeile;
+                letter = zeile.charAt(0);
+                zahl = zeile.substring(1);
+                intZahl = Integer.parseInt(zahl);
+                liste[anzahl] = "";
+                for (int i = 0; i < intZahl; i++) {
+                    liste[anzahl] = liste[anzahl] + letter;
+                }
+
                 anzahl++;
             }
 
-        }catch (FileNotFoundException e){
-            System.err.println(e.getMessage());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
         return liste;
@@ -64,14 +75,14 @@ public class StringCompress {
     /**
      * Der Inhalt des String-Arrays wird zeilenweise auf der Console ausgegeben
      *
-     *
      * @param lines String-Array
      */
     public void print(String[] lines) {
 
-        for (int i = 0; i < readFromFile("sample.txt").length; i++) {
-            System.out.println(readFromFile("sample.txt")[i]);
+        for (int i = 0; i < lines.length; i++) {
+            System.out.println(lines[i]);
         }
+
     }
 
     /**
@@ -81,17 +92,18 @@ public class StringCompress {
      * @return Anzahl der Zeilen in der Textdatei
      */
     public int getNoOfLines(String fileName) {
+
         int anzahl = 0;
 
-        try(Scanner scanner = new Scanner(new FileReader("sample.txt"))){
+        try (Scanner scanner = new Scanner(new FileReader(fileName))) {
 
-            while (scanner.hasNextLine()){
-               scanner.nextLine();
-               anzahl++;
+            while (scanner.hasNextLine()) {
+                scanner.nextLine();
+                anzahl++;
             }
 
-        }catch (FileNotFoundException e){
-            System.err.println(e.getMessage());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
         return anzahl;
